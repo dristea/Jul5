@@ -97,6 +97,7 @@
 		//textField2.delegate = self;
 		[self addSubview: textField2];
 		
+		
 		buttonCompute = [UIButton buttonWithType: UIButtonTypeRoundedRect];
 		//Center the button in the view.
 		
@@ -123,6 +124,22 @@
 		
 	}
 	return self;
+}
+
+
+#pragma mark -
+#pragma mark methods of UITextFieldDelegate protocol
+
+//Called when return key is pressed.
+//Decide if the app should accept this input and hide the keyboard.
+
+- (BOOL) textFieldShouldReturn: (UITextField *) tf {
+	if ([tf.text isEqualToString: @""]) {
+		textField0.placeholder = @"<type a non-empty word>";
+	} else {
+		[tf resignFirstResponder];	//Hide keyboard.
+	}
+	return YES;	//The text field should do its default behavior.
 }
 
 
